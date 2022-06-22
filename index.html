@@ -7,12 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        Hello Vue 3
+    <div id="app">
+        {{ greeting }}
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        Vue.createApp()
+        let app = Vue.createApp({
+            data: function(){
+                return {
+                    greeting: 'Hello Vue 3!'
+                }
+            }
+        })
+        app.mount('#app')
     </script>
 </body>
 </html>
