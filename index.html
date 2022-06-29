@@ -30,12 +30,20 @@
     <div id="app" v-cloak>
         {{greeting}}
         <input @keyup.enter="greet(greeting)" v-model="greeting" />
-
-        <login-form />
+        <div>
+            <login-form />
+        </div>
 
         <hr />
-        <button v-on:click.prevent.stop="toggleBox">Toggle Box</button>
-        <div v-if="isVisible" class="box"></div>
+        
+        <button @click="toggleBox">Toggle Box</button>
+        <test-box v-if="isVisible" />
+        <!-- <div v-if="isVisible" class="box"></div> -->
+        
+        <br>
+        <hr>
+
+   
         
     </div>
     <script src="https://unpkg.com/vue@next"></script>
@@ -56,6 +64,11 @@
                 }
             }
         })
+        app.component('test-box', {
+            template: `
+                <div class="box"></div>
+            `
+        })
         app.component('login-form', {
             template: `
                 <form @submit.prevent="handleSubmit">
@@ -66,7 +79,7 @@
                     <button>Log In</button>
 
                     <hr>
-                    
+
                     <custom-input 
                         v-for="(input, i) in inputs"
                         :key="i"
