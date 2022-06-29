@@ -60,8 +60,8 @@
             template: `
                 <form @submit.prevent="handleSubmit">
                     <h1>{{ title }}</h1>
-                    <custom-input type="email" v-bind:label="emailLabel"/>
-                    <custom-input type="password" v-bind:label="passwordLabel" />
+                    <custom-input v-model="email" :label="emailLabel"/>
+                    <custom-input v-model="password" v-bind:label="passwordLabel" />
                     <button>Log In</button>
                 </form>
             `,
@@ -82,13 +82,32 @@
             }
         })
         app.component('custom-input', {
+            // v-model has modelValue from props and gets the input from computed
             template: `
                 <label>
                     {{ label }}
-                    <input type="text">
+                    <input type="text" v-model="inputValue">
                 </label>
             `,
-            props: ['label']
+            props: ['label', 'modelValue'],
+            //put variable names as KEYS
+            computed: {
+                inputValue: {
+                    get(){
+                        return this.modelValue
+                    },
+                    set(value){
+                        //emit events that other components can listen to
+                                    //event             argument
+                        this.$emit('update:modelValue', value)
+                    }
+                }
+            }
+            // data(){
+            //     return {
+            //         inputValue: ''
+            //     }
+            // }
         })
         //mounts to the DOM
         app.mount('#app')
