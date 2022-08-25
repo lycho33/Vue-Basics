@@ -17,20 +17,30 @@
       <!-- 1) Output your name -->
       <h2>YOUR NAME</h2>
       <!-- 2) Output your age -->
-      <h3>My name is: {{ name }}</h3>
+        <h3>My name is: {{ name }}</h3>
       <p>YOUR AGE</p>
-      <h3>My age is: {{ age }}</h3>
+        <h3>My age is: {{ age }}</h3>
       <!-- 3) Output your age + 5 -->
       <p>YOUR AGE in 5 years</p>
       <!-- 4) Output a random number (0 to 1) -->
-      <h3>{{ ageCalc() }}</h3>
-      <p>Favorite Number: RANDOM NUMBER BETWEEN 0 AND 1</p>
+        <h3>{{ ageCalc() }}</h3>
+      <p>Favorite Number: {{ randomNum() }} </p>
+      
       <div>
-        <!-- 5) Display some image you found via Google -->
-        <img src="SOME IMAGE URL" />
+          <!-- 5) Display some image you found via Google -->
+          <img :src="url" />
       </div>
       <!-- 6) Prepopulate the input field with your name via the "value" attribute -->
-      <input type="text" />
+      <input type="text" :value="name"/>
+
+      <section id="events">
+        <h2>Events in Action</h2>
+        <button v-on:click="counter++">Add</button>
+        <button v-on:click="counter--">Remove</button>
+        <p>Result: {{ counter }}</p>
+      </section>
     </section>
+
+
   </body>
 </html>
