@@ -1,158 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .box{
-            background-color: purple;
-            height: 200px;
-            width: 200px;
-        }
-        .box.two {
-            background-color: red;
-        }
-        .box.three {
-            background-color: blue;
-        }
-        [v-cloak]{
-            display: none;
-        }
-        input {
-            margin: 10px;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <div id="app" v-cloak>
-        {{greeting}}
-        <input @keyup.enter="greet(greeting)" v-model="greeting" />
-        <div>
-            <login-form />
-        </div>
-
-        <hr />
-        
-        <button @click="toggleBox">Toggle Box</button>
-        <test-box v-if="isVisible" />
-        <!-- <div v-if="isVisible" class="box"></div> -->
-        
-        <br>
-        <hr>
-
-        <h1>add new stuff</h1>
-        
-    </div>
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-        let app = Vue.createApp({
-            data: function(){
-                return {
-                    greeting: 'Hello Vue 3!',
-                    isVisible: false,
-                }
-            },
-            methods: {
-                toggleBox() {
-                    this.isVisible = !this.isVisible
-                },
-                greet(greeting){
-                    console.log(greeting)
-                }
-            }
-        })
-        app.component('test-box', {
-            template: `
-                <div class="box"></div>
-            `
-        })
-        app.component('login-form', {
-            template: `
-                <form @submit.prevent="handleSubmit">
-                    <h1>{{ title }}</h1>
-                    <p v-for="(str, i) in inputer" :key="i">{{ str }}</p>
-                    <custom-input v-model="email" :label="emailLabel"/>
-                    <custom-input v-model="password" v-bind:label="passwordLabel" />
-                    <button>Log In</button>
-
-                    <hr>
-
-                    <custom-input 
-                        v-for="(input, i) in inputs"
-                        :key="i"
-                        v-model="input.value" 
-                        :label="input.label"
-                        :type="input.type"
-                    />
-                    <button>Log In</button>
-                </form>
-            `,
-            components: ['custom-input'],
-            data(){
-                return {
-                    title: 'Login Form',
-                    inputer: [
-                        'email',
-                        'password',
-                        'name'
-                    ],
-                    inputs: [
-                        {
-                            label: 'Email',
-                            value: '',
-                            type: 'email'
-                        },
-                        {
-                            label: 'Password',
-                            value: '',
-                            type: 'password'
-                        }
-                    ],
-                    email: '',
-                    password: '',
-                    emailLabel: 'Email',
-                    passwordLabel: 'Password',
-                }
-            },
-            methods: {
-                handleSubmit() {
-                    console.log(this.inputs[0].value, this.inputs[1].value)
-                }
-            }
-        })
-        app.component('custom-input', {
-            // v-model has modelValue from props and gets the input from computed
-            template: `
-                <label>
-                    {{ label }}
-                    <input :type="type" v-model="inputValue">
-                </label>
-            `,
-            props: ['label', 'type', 'modelValue'],
-            //put variable names as KEYS
-            computed: {
-                inputValue: {
-                    get(){
-                        return this.modelValue
-                    },
-                    set(value){
-                        //emit events that other components can listen to
-                                    //event             argument
-                        this.$emit('update:modelValue', value)
-                    }
-                }
-            }
-            // data(){
-            //     return {
-            //         inputValue: ''
-            //     }
-            // }
-        })
-        //mounts to the DOM
-        app.mount('#app')
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <section id="assignment">
+      <!-- 1) Output your name -->
+      <h2>YOUR NAME</h2>
+      <!-- 2) Output your age -->
+      <h3>My name is: {{ name }}</h3>
+      <p>YOUR AGE</p>
+      <h3>My age is: {{ age }}</h3>
+      <!-- 3) Output your age + 5 -->
+      <p>YOUR AGE in 5 years</p>
+      <!-- 4) Output a random number (0 to 1) -->
+      <h3>{{ ageCalc() }}</h3>
+      <p>Favorite Number: RANDOM NUMBER BETWEEN 0 AND 1</p>
+      <div>
+        <!-- 5) Display some image you found via Google -->
+        <img src="SOME IMAGE URL" />
+      </div>
+      <!-- 6) Prepopulate the input field with your name via the "value" attribute -->
+      <input type="text" />
+    </section>
+  </body>
 </html>
