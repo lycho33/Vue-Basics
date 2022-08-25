@@ -8,6 +8,8 @@ const app = Vue.createApp({
             url: 'https://i.pinimg.com/originals/f4/cc/23/f4cc2387d351b39d11fc106ac3aea34a.jpg',
             counter: 0,
             confirmedName: '',
+            message: '',
+            confirmedMessage: '',
         }
     },
     methods: {
@@ -27,6 +29,10 @@ const app = Vue.createApp({
         },
         confirmInput() {
             this.confirmedName = this.name;
+            this.confirmedMessage = this.message;
+        },
+        setMessage(e) {
+            this.message = e.target.value;
         }
     }
 });
