@@ -12,14 +12,22 @@ const app = Vue.createApp({
             confirmedName: '',
             message: '',
             confirmedMessage: '',
+            number: 0,
+            boxASelected: false,
+            boxBSelected: false,
+            boxCSelecrted: false,
         }
     },
     watch: {
         counter(value) {
             if(value > 50) {
-                this.counter = 0;
+                const that = this;
+                setTimeout(function() {
+                    //this wouldn't have the same context
+                    that.counter = 0;
+                }, 2000);
             }
-        }
+        },
         // name(value) {
         //     if(value === ''){
         //         this.fullName = '';
@@ -34,6 +42,12 @@ const app = Vue.createApp({
         //         this.fulName = this.name + ' ' + value; 
         //     }
         // }
+        result() {
+            const that = this;
+            setTimeout(function() {
+                that.number = 0;
+            }, 5000)
+        }
     },
     computed: {
         fullname() {
@@ -42,8 +56,16 @@ const app = Vue.createApp({
             } else {
                 return this.name + ' ' + this.lastName;
             }
+        },
+        result() {
+            if(this.number < 37) {
+                return 'Not there yet!';
+            } else if (this.number === 37) {
+                return this.number;
+            } else {
+                return 'Too much!';
+            }
         }
-
     },
     methods: {
         ageCalc() { return this.age + 5 },
@@ -76,6 +98,18 @@ const app = Vue.createApp({
         },
         resetInput() {
             this.name = '';
+        },
+        addingNum(num) {
+            this.number += num;
+        },
+        boxSelected(box) {
+            if (box === 'A') {
+                this.boxASelected = !this.boxASelected;
+            } else if (box === 'B') {
+                this.boxBSelected = !this.boxBSelected;
+            } else if (box === 'C') {
+                this.boxCSelected = !this.boxCSelecrted;
+            }
         }
     }
 });
