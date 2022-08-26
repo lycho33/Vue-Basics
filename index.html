@@ -80,21 +80,23 @@
       <!-- DYNAMIC STYLING -->
       <section>
         <!-- <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
-        <div> 
+        <div
             class='demo'
-            <!-- if boxASelected is truthy... then use active/red -->
-            :class="{active: boxASelected}"
-            @click="boxSelected('A')">
+            :class="boxAClasses"
+            @click="boxSelected('A')"
+        >
         </div>
+        <!-- another styling option -->
         <div 
-            class="demo" 
-            :class="{active: boxBSelected}"
-            @click="boxSelected('B')">
+            :class="['demo', {active: boxBSelected}]"
+            @click="boxSelected('B')"
+        >
         </div>
         <div 
             class="demo" 
             :class="{active: boxCSelected}"
-            @click="boxSelected('C')">
+            @click="boxSelected('C')"
+        >
         </div>
       </section>
 

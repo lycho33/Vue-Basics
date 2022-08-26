@@ -65,6 +65,9 @@ const app = Vue.createApp({
             } else {
                 return 'Too much!';
             }
+        },
+        boxAClasses() {
+            return { active: this.boxASelected }
         }
     },
     methods: {
