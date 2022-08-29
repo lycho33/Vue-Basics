@@ -106,8 +106,13 @@
         <button @click="addGoal">Add Goal</button>
         <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
         <ul v-else>
-          <li v-for="(goal, idx) in goals">{{ goal }} - {{ index }}</li>
+          <!-- <li v-for="(goal, idx) in goals" :key="idx" @click="removeGoal(idx)">{{ goal }} - {{ idx }}</li> -->
+          <p>{{ goal }} - {{ idx }}</p>
+          <input type="text" @click.stop>
         </ul>
+        <!-- <ul>
+          <li v-for="num in 10">{{ num }}</li>
+        </ul> -->
       </section>
 
     </section>

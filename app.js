@@ -119,8 +119,8 @@ const app = Vue.createApp({
         addGoal() {
             this.goals.push(this.enteredGoalValue);
         },
-        renderGoals() {
-            this.goals.map(g => g);
+        removeGoal(idx) {
+            this.goals.splice(idx, 1);
         }
     }
 });
