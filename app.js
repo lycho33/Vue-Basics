@@ -16,6 +16,8 @@ const app = Vue.createApp({
             boxASelected: false,
             boxBSelected: false,
             boxCSelecrted: false,
+            goals: [],
+            enteredGoalValue: '',
         }
     },
     watch: {
@@ -113,6 +115,12 @@ const app = Vue.createApp({
             } else if (box === 'C') {
                 this.boxCSelected = !this.boxCSelecrted;
             }
+        },
+        addGoal() {
+            this.goals.push(this.enteredGoalValue);
+        },
+        renderGoals() {
+            this.goals.map(g => g);
         }
     }
 });

@@ -100,6 +100,16 @@
         </div>
       </section>
 
+      <section id="user-goals">
+        <h2>My course goals</h2>
+        <input v-model="enteredGoalValue" type="text" />
+        <button @click="addGoal">Add Goal</button>
+        <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+        <ul v-else>
+          <li v-for="(goal, idx) in goals">{{ goal }} - {{ index }}</li>
+        </ul>
+      </section>
+
     </section>
 
 
