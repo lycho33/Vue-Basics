@@ -18,6 +18,9 @@ const app = Vue.createApp({
             boxCSelecrted: false,
             goals: [],
             enteredGoalValue: '',
+            newTask: '',
+            tasks: [],
+            taskListIsVisible: true,
         }
     },
     watch: {
@@ -70,6 +73,9 @@ const app = Vue.createApp({
         },
         boxAClasses() {
             return { active: this.boxASelected }
+        },
+        buttonCaption() {
+            return this.taskListIsVisible ? 'Hide List' : 'Show';
         }
     },
     methods: {
@@ -121,6 +127,12 @@ const app = Vue.createApp({
         },
         removeGoal(idx) {
             this.goals.splice(idx, 1);
+        },
+        addTask() {
+            this.tasks.push(this.newTask)
+        },
+        toggleTaskList() {
+            this.taskListIsVisible = !this.taskListIsVisible;
         }
     }
 });
