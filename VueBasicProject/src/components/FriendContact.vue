@@ -1,7 +1,7 @@
 <template>
     <li>
         <h2>{{ friend.name }}</h2>
-        <button @click="toggleDetails">Show Details</button>
+        <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
         <ul v-if="detailsAreVisible">
             <li>
                 <strong>Phone</strong> 
@@ -36,3 +36,7 @@
         }
     };
 </script>
+
+<style>
+
+</style>
