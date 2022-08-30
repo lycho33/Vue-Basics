@@ -1,6 +1,7 @@
 <template>
     <section>
         <header><h1>My Friends</h1></header>
+        <new-friend />
         <ul>
             <friend-contact 
                 v-for="friend in friends"
@@ -18,6 +19,8 @@
 
 <script>
 import FriendContact from './components/FriendContact.vue'
+import NewFriend from './components/NewFriend.vue'
+
 export default {
   components: { FriendContact },
     data() {
