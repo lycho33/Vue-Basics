@@ -6,6 +6,7 @@
                 name="Maunel Lorenz" 
                 phone-number='0123 45678 90' 
                 email-address='manuel@localhost.com' 
+                is-favorite='1'
             />
             <friend-contact 
                 name="julie" 
