@@ -1,20 +1,26 @@
 <template>
     <li>
-        <div>
-            <header>
-                <h3>{{ title }}</h3>
-                <button>Delete</button>
-            </header>
-        </div>
-        <p>{{ description }}</p>
-        <nav>
-            <a :href="link">View Resource</a>
-        </nav>
+        <base-card>
+            <div>
+                <header>
+                    <h3>{{ title }}</h3>
+                    <base-button mode="flat">Delete</base-button>
+                </header>
+            </div>
+            <p>{{ description }}</p>
+            <nav>
+                <a :href="link">View Resource</a>
+            </nav>
+        </base-card>
     </li>
 </template>
 
 <script>
+
 export default {
+    components: {
+
+    },
     props: ['title', 'description', 'link'],
     data() {
         return {
