@@ -1,4 +1,14 @@
 <template>
+    <div>
+    <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
+        <template #default>
+            <p>Unfortunately, at least one input value is invalid</p>
+            <p>Please check all inputs and make sure you enter at least a few characters in the input</p>
+        </template>
+        <template #actions>
+            <base-button @click="confirmError">Okay</base-button>
+        </template>
+    </base-dialog>
     <base-card>
         <form @submit.prevent="submitData">
             <div class="form-control">
@@ -18,14 +28,22 @@
             </div>
         </form>
     </base-card>
+    </div>
 </template>
 
 <script>
     import BaseCard from '../../../../Badges-Assignment/src/components/UI/BaseCard.vue'
     import BaseButton from '../UI/BaseButton.vue'
+    import BaseDialog from '../UI/BaseDialog.vue'
+
 export default {
-    components: { BaseCard, BaseButton },
+    components: { BaseCard, BaseButton, BaseDialog },
     inject: ['addResource'],
+    data() {
+        return {
+            inputIsInvalid: false,
+        }
+    },
     methods: {
         submitData() {
             console.log('can submit data')
@@ -33,7 +51,13 @@ export default {
             const enteredDescription = this.$refs.desInput.value;
             const enteredLink = this.$refs.linkInput.value;
 
+            if(enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredLink.trim() === '') {
+                this.inputIsInvalid = true;
+            }
             this.addResource(enteredTitle, enteredDescription, enteredLink);
+        },
+        confirmError() {
+            this.inputIsInvalid = false;
         }
     }
 }
