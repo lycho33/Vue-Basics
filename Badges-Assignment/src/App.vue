@@ -1,47 +1,68 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <!-- <the-header></the-header> -->
+    <TheHeader />
+    <BadgeList></BadgeList>
+    <UserInfo
+      :full-name="activeUser.name"
+      :info-text="activeUser.description"
+      :role="activeUser.role"
+    ></UserInfo>
+    <course-goals #default="slotProps">
+        <h2>{{ slotProps.item }}</h2>
+        <p> {{ slotProps['another-prop'] }}</p>
+    </course-goals>
+    <button @click="setSelectedComponent('active-goals')">Active Goals</button>
+    <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
+    <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
+    <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
+    <keep-alive>
+      <component :is="selectedComponent "></component>
+    </keep-alive>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+  import TheHeader from './components/layout/TheHeader.vue'
+  import BadgeList from './components/BadgeList.vue'
+  import UserInfo from './components/UserInfo.vue'
+  import CourseGoals from './components/CourseGoals.vue'
+  import ManageGoals from './components/ManageGoals.vue'
+  import ActiveGoals from './components/ActiveGoals.vue'
+
+export default {
+  components: {
+    TheHeader,
+    BadgeList,
+    UserInfo,
+    CourseGoals,
+    ActiveGoals,
+    ManageGoals,
+  },
+  data() {
+    return {
+      selectedComponent: 'active-goals',
+      activeUser: {
+        name: 'Maximilian Schwarzmüller',
+        description: 'Site owner and admin',
+        role: 'admin',
+      },
+    };
+  },
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
+    }
+  }
+};
+</script>
+
+<style>
+html {
+  font-family: sans-serif;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+body {
+  margin: 0;
 }
 </style>
