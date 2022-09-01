@@ -58,6 +58,7 @@ li {
 
 .user-list-leave-active {
   transition: all 1s ease-in;
+  /* other elements move to their new position more smoothly */
   position: absolute;
 }
 
@@ -65,7 +66,7 @@ li {
   opacity: 0;
   transform: translateX(30px);
 }
-
+/* helps the other names that get a new position have a ease transition */
 .user-list-move {
   transition: transform 0.8s ease;
 }

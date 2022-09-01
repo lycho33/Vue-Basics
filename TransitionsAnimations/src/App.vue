@@ -1,6 +1,7 @@
 <template>
   <router-view v-slot="slotProps">
     <transition name="fade-button" mode="out-in">
+      <!-- animates between pages with slotProps.Component -->
       <component :is="slotProps.Component"></component>
     </transition>
   </router-view>
@@ -14,15 +15,18 @@ export default {
       dialogIsVisible: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      //class variable to use for [ enteredCancelled, leaveCancelled, enter, leave ]
       enterInterval: null,
       leaveInterval: null,
     };
   },
   methods: {
+    //after enter animation is trigged, the animation is cancelled
     enterCancelled(el) {
       console.log(el);
       clearInterval(this.enterInterval);
     },
+    //after leave animation, the animation is cancelled 
     leaveCancelled(el) {
       console.log(el);
       clearInterval(this.leaveInterval);
@@ -39,8 +43,10 @@ export default {
       this.enterInterval = setInterval(() => {
         el.style.opacity = round * 0.01;
         round++;
+        //interval will stop after 10 rounds
         if (round > 100) {
           clearInterval(this.enterInterval);
+          //the hook is FINISHED
           done();
         }
       }, 20);
