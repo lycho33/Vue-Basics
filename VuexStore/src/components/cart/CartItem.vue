@@ -1,39 +1,44 @@
 <template>
-  <li v-for="item in getTheCart.items">
-    <div>
-      <img :src="item.image" :alt="title" />
-    </div>
-    <div>
-      <h3>{{ item.title }}</h3>
-      <div class="item__data">
-        <div>
-          Price per Item:
-          <strong>${{ item.price }}</strong>
-        </div>
-        <div>
-          Quantity:
-          <strong>{{ item.qty }}</strong>
-        </div>
+  <div>
+    <li v-for="item in getTheCart.items">
+      <div>
+        <img :src="item.image" :alt="title" />
       </div>
+      <div>
+        <h3>{{ item.title }}</h3>
+        <div class="item__data">
+          <div>
+            Price per Item:
+            <strong>${{ item.price }}</strong>
+          </div>
+          <div>
+            Quantity:
+            <strong>{{ item.qty }}</strong>
+          </div>
+        </div>
 
-      <button @click="remove">Remove</button>
-    </div>
-  </li>
-  <div class="item__total">Total: ${{ getTheCart.total }}</div>
+        <button @click="remove(item)">Remove</button>
+      </div>
+    </li>
+    <div class="item__total">Total: ${{ getTheCart.total }}</div>
+  </div>
 </template>
 
 <script>
 export default {
-  inject: ['removeProductFromCart'],
-  props: ['prodId', 'title', 'image', 'price', 'qty'],
+  // inject: ['removeProductFromCart'],
+  // props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
       return (this.price * this.qty).toFixed(2);
     }
   },
   methods: {
-    remove() {
-      this.removeProductFromCart(this.prodId);
+    // remove() {
+    //   this.removeProductFromCart(this.prodId);
+    // }
+    remove(product) {
+      this.$store.commit('removeProductFromCart', product)
     }
   },
 computed: {

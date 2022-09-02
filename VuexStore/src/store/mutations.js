@@ -26,9 +26,26 @@ export default {
         state.cart.qty++;
         state.cart.total += payload.price;
         console.log(state.cart)
+    },
+    removeProductFromCart(state, payload) {
+        console.log("remove", payload)
+        const productInCartIdx = state.cart.items.findIndex(c => c.productId === payload.productId);
+        const prodData = state.cart.items[productInCartIdx];
+        state.cart.items.splice(productInCartIdx, 1);
+        state.cart.qty -= prodData.qty;
+        state.cart.total -= prodData.price * prodData.qty;
     }
-
 }
+
+// removeProductFromCart(prodId) {
+//     const productInCartIndex = this.cart.items.findIndex(
+//       (cartItem) => cartItem.productId === prodId
+//     );
+//     const prodData = this.cart.items[productInCartIndex];
+//     this.cart.items.splice(productInCartIndex, 1);
+//     this.cart.qty -= prodData.qty;
+//     this.cart.total -= prodData.price * prodData.qty;
+//   },
 
 
 // addProductToCart(productData) {
