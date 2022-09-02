@@ -1,17 +1,20 @@
 <template>
   <div>
       <the-header></the-header>
-      <h2 v-for="p in this.$store.state.products">{{ p.title }}</h2>
+      <product-item />
       <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import TheHeader from './components/nav/TheHeader.vue';
+import ProductItem from './components/products/ProductItem.vue'
 
 export default {
   components: {
-    TheHeader
+    TheHeader,
+    ProductItem
   },
   data() {
     return {
@@ -50,7 +53,8 @@ export default {
   computed: {
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
-    }
+    },
+    ...mapMutations([ 'login', 'logout' ])
   },
   provide() {
     return {
@@ -59,8 +63,8 @@ export default {
       cart: this.cart,
       addProductToCart: this.addProductToCart,
       removeProductFromCart: this.removeProductFromCart,
-      login: this.login,
-      logout: this.logout,
+      // login: this.login,
+      // logout: this.logout,
     };
   },
   methods: {
@@ -94,12 +98,12 @@ export default {
       this.cart.qty -= prodData.qty;
       this.cart.total -= prodData.price * prodData.qty;
     },
-    login() {
-      this.isAuth = true;
-    },
-    logout() {
-      this.isAuth = false;
-    },
+    // login() {
+    //   this.isAuth = true;
+    // },
+    // logout() {
+    //   this.isAuth = false;
+    // },
   },
 };
 </script>
