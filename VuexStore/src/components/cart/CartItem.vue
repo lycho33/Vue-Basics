@@ -1,24 +1,25 @@
 <template>
-  <li>
+  <li v-for="item in getTheCart.items">
     <div>
-      <img :src="image" :alt="title" />
+      <img :src="item.image" :alt="title" />
     </div>
     <div>
-      <h3>{{ title }}</h3>
+      <h3>{{ item.title }}</h3>
       <div class="item__data">
         <div>
           Price per Item:
-          <strong>${{ price }}</strong>
+          <strong>${{ item.price }}</strong>
         </div>
         <div>
           Quantity:
-          <strong>{{ qty }}</strong>
+          <strong>{{ item.qty }}</strong>
         </div>
       </div>
-      <div class="item__total">Total: ${{ itemTotal }}</div>
+
       <button @click="remove">Remove</button>
     </div>
   </li>
+  <div class="item__total">Total: ${{ getTheCart.total }}</div>
 </template>
 
 <script>
@@ -34,7 +35,13 @@ export default {
     remove() {
       this.removeProductFromCart(this.prodId);
     }
-  }
+  },
+computed: {
+    getTheCart() {
+      console.log(this.$store.getters.getCart)
+      return this.$store.getters.getCart;
+    },
+}
 };
 </script>
 
@@ -66,6 +73,7 @@ img {
   border-bottom: 2px solid #474747;
   padding: 0.25rem 0;
   width: auto;
+  text-align: center;
 }
 
 button {

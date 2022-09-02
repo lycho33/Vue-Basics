@@ -2,6 +2,7 @@
   <div>
       <the-header></the-header>
       <product-item />
+      <cart-item />
       <router-view></router-view>
   </div>
 </template>
@@ -10,11 +11,13 @@
 import { mapMutations } from 'vuex';
 import TheHeader from './components/nav/TheHeader.vue';
 import ProductItem from './components/products/ProductItem.vue'
+import CartItem from './components/cart/CartItem.vue'
 
 export default {
   components: {
     TheHeader,
-    ProductItem
+    ProductItem,
+    CartItem,
   },
   data() {
     return {
