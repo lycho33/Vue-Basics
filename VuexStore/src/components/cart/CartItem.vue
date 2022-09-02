@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <button @click="remove(item)">Remove</button>
+        <button @click="remove(cartItem)">Remove</button>
       </div>
     </li>
     <!-- <div class="item__total">Total: ${{ getTheCart.total }}</div> -->
@@ -27,7 +27,7 @@
 <script>
 export default {
   // inject: ['removeProductFromCart'],
-  props: ['prodId', 'title', 'image', 'price', 'qty'],
+  props: ['prodId', 'title', 'image', 'price', 'qty', 'cartItem'],
   computed: {
     itemTotal() {
       return (this.price * this.qty).toFixed(2);
