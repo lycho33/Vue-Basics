@@ -6,7 +6,9 @@ export default {
         state.isLoggedIn = false;
     },
     addProductToCart(state, payload) {
-        const productInCartIdx = state.cart.items.findIndex(ci => ci.productId === state.payload.id);
+        console.log('payload', payload)
+        // debugger
+        const productInCartIdx = state.cart.items.findIndex(ci => ci.productId === payload.id);
         console.log(productInCartIdx)
 
         if (productInCartIdx >= 0) {
@@ -23,6 +25,7 @@ export default {
         }
         state.cart.qty++;
         state.cart.total += payload.price;
+        console.log(state.cart)
     }
 
 }
