@@ -33,7 +33,8 @@ export default {
         const prodData = state.cart.items[productInCartIdx];
         state.cart.items.splice(productInCartIdx, 1);
         state.cart.qty -= prodData.qty;
-        state.cart.total -= prodData.price * prodData.qty;
+        state.cart.total -= (prodData.price * prodData.qty);
+        state.cart.total.toFixed(2)
     }
 }
 
