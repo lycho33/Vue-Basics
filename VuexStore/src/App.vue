@@ -1,7 +1,6 @@
 <template>
   <div>
       <the-header></the-header>
-      <product-item />
       <router-view></router-view>
   </div>
 </template>
