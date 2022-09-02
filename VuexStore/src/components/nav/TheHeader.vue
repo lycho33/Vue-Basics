@@ -10,7 +10,7 @@
         </li>
         <li>
           <router-link to="/cart">Cart&nbsp;</router-link>
-          <base-badge mode="elegant">{{ this.$store.state.cart.qty }}</base-badge>
+          <base-badge mode="elegant">{{ getTheCart.qty }}</base-badge>
         </li>
         <li v-if="isAuth">
           <router-link to="/admin">Admin</router-link>
@@ -28,10 +28,13 @@
 import {mapMutations} from 'vuex';
 
 export default {
-  inject: ['cart'],
+  // inject: ['cart'],
   computed: {
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
+    },
+    getTheCart() {
+      return this.$store.getters.getCart;
     },
     ...mapMutations({ login: 'login', logout: 'logout' })
   }
