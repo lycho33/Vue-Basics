@@ -1,10 +1,10 @@
 <template>
   <section>
     <h2>Your Cart</h2>
-    <h3>Total Amount: <base-badge mode="elegant">${{ cartTotal }}</base-badge></h3>
+    <h3>Total Amount: <base-badge mode="elegant">${{ getTheCart.total }}</base-badge></h3>
     <ul>
       <cart-item
-        v-for="item in cart.items"
+        v-for="item in getTheCart.items"
         :key="item.productId"
         :prod-id="item.productId"
         :title="item.title"
@@ -25,9 +25,13 @@ export default {
     CartItem,
   },
   computed: {
-    cartTotal() {
-      return this.cart.total.toFixed(2);
-    }
+    // cartTotal() {
+    //   return this.cart.total.toFixed(2);
+    // }
+    getTheCart() {
+      console.log(this.$store.getters.getCart)
+      return this.$store.getters.getCart;
+    },
   }
 };
 </script>

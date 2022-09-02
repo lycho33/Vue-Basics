@@ -2,7 +2,6 @@
   <div>
       <the-header></the-header>
       <product-item />
-      <cart-item />
       <router-view></router-view>
   </div>
 </template>

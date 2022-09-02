@@ -1,19 +1,19 @@
 <template>
-  <li class="product" v-for="p in gettingProducts">
+  <li class="product">
     <div class="product__data">
       <div class="product__image">
-        <img :src="p.image" :alt="p.title" />
+        <img :src="image" :alt="title" />
       </div>
       <div class="product__text">
-        <h3>{{ p.title }}</h3>
+        <h3>{{ title }}</h3>
         <base-badge mode="highlight" :no-margin-left="true">
-          <h4>${{ p.price }}</h4>
+          <h4>${{ price }}</h4>
         </base-badge>
-        <p>{{ p.description }}</p>
+        <p>{{ description }}</p>
       </div>
     </div>
     <div class="product__actions">
-      <button @click="addToCart(p)">Add to Cart</button>
+      <button @click="addToCart(product)">Add to Cart</button>
     </div>
   </li>
 </template>
@@ -23,7 +23,7 @@ import {mapMutations} from 'vuex';
 
 export default {
   // inject: ['addProductToCart'],
-  // props: ['id', 'image', 'title', 'price', 'description'],
+  props: ['id', 'image', 'title', 'price', 'description', 'product'],
   methods: {
     // addToCart() {
     //   this.addProductToCart({

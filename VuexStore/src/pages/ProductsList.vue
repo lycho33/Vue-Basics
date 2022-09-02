@@ -2,13 +2,14 @@
   <section>
     <ul>
       <product-item
-        v-for="prod in products"
+        v-for="prod in gettingProducts"
         :key="prod.id"
         :id="prod.id"
         :title="prod.title"
         :image="prod.image"
         :description="prod.description"
         :price="prod.price"
+        :product="prod"
       ></product-item>
     </ul>
   </section>
@@ -22,6 +23,12 @@ export default {
   components: {
     ProductItem,
   },
+  computed: {
+      gettingProducts() {
+        return this.$store.getters.getProducts;
+      },
+  }
+
 };
 </script>
 

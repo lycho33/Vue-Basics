@@ -1,33 +1,33 @@
 <template>
   <div>
-    <li v-for="item in getTheCart.items">
+    <li :key="prodId">
       <div>
-        <img :src="item.image" :alt="title" />
+        <img :src="image" :alt="title" />
       </div>
       <div>
-        <h3>{{ item.title }}</h3>
+        <h3>{{ title }}</h3>
         <div class="item__data">
           <div>
             Price per Item:
-            <strong>${{ item.price }}</strong>
+            <strong>${{ price }}</strong>
           </div>
           <div>
             Quantity:
-            <strong>{{ item.qty }}</strong>
+            <strong>{{ qty }}</strong>
           </div>
         </div>
 
         <button @click="remove(item)">Remove</button>
       </div>
     </li>
-    <div class="item__total">Total: ${{ getTheCart.total }}</div>
+    <!-- <div class="item__total">Total: ${{ getTheCart.total }}</div> -->
   </div>
 </template>
 
 <script>
 export default {
   // inject: ['removeProductFromCart'],
-  // props: ['prodId', 'title', 'image', 'price', 'qty'],
+  props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
       return (this.price * this.qty).toFixed(2);
