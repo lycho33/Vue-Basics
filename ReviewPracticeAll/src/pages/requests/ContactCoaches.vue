@@ -2,7 +2,7 @@
     <div>
         <form>
             <div class="form-control">
-                <label for="email">YOur E-mail</label>
+                <label for="email">Your E-mail</label>
                 <input type="email" id="email" />
             </div>
             <div class="form-control">
